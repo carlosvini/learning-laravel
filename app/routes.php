@@ -1,37 +1,24 @@
 <?php
 
 
-Route::get('/', function() {
+Route::get('users', function() {
 
-  // $user = new User;
+ 
 
-  // $user->username = 'NewUser';
-  // $user->password = Hash::make('yahoo');
+  $users = User::all();
 
-  // $user->save(); 
+  return View::make('users.index', ['users' => $users]);
 
-  // return $user;
-
-  // User::create([
-  //   'username' => 'NewUser',
-  //   'password' => Hash::make('yahoo')
-  // ]);
-
-
-  // $user = User::find(2);
-
-  // $user->username = 'UpdatedName';
-
-  // $user->save();
-
-
-  // $user = User::find(2);
-  // $user->delete();
+});
 
 
 
-  //return User::all();
+Route::get('users/{username}', function($username) {
 
-  return User::orderBy('username', 'asc')->take(2)->get();
+ 
+
+  $user = User::whereUsername($username)->first();
+
+ return View::make('users.show', ['user' => $user]);
 
 });

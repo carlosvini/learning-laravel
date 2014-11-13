@@ -2,6 +2,14 @@
 
 class UsersController extends \BaseController {
 
+
+	protected $user;
+
+	public function __construct(User $user)
+	{
+		$this->user = $user;
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -37,16 +45,15 @@ class UsersController extends \BaseController {
 	}
 
 	public function store() {
-		if (!User::isValid(Input::all())) {
-			return Redirect::back()->withInput()->withErrors(User::$errors);
-		}
-		
-		$user = new User;
-		$user->username = Input::get('username');
-		$user->password = Hash::make(Input::get('password'));
-		$user->save();
+		$input = Input::all();
 
-		return Redirect::to('/users');
+		if (!$this->user->fill($input)->isValid()) {
+			return Redirect::back()->withInput()->withErrors($this->user->errors);
+		}
+
+		$this->user->save();
+
+		return Redirect::route('users.index');
 	}
 	
 

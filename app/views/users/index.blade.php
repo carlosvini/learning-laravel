@@ -4,7 +4,7 @@
     <h1>All Users</h1>
 
     @forelse ($users as $user)
-      <li>{{ link_to("/users/{$user->username}", $user->username) }}</li>
+      <li>&bull; {{ link_to("/users/{$user->username}", $user->username) }}</li>
 
     @empty 
       <p>Unfortunately there are no users.</p>

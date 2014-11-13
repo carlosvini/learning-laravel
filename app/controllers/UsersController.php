@@ -31,6 +31,14 @@ class UsersController extends \BaseController {
 	 	return View::make('users.show', ['user' => $user]);
 	}
 
+	public function create() {
+
+		return View::make('users.create');
+	}
+
+	public function store() {
+		return 'create the new user.';
+	}
 	
 
 }

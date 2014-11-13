@@ -13,7 +13,7 @@
         {{ Form::text('password') }}
       </div>
 
-      <div>{{ Form::submit('Create User') }}
+      {{ Form::submit('Create User') }}
 
 
     {{ Form::close() }}

@@ -1,5 +1,16 @@
 <?php
 
+
+// Fix temporário para cookies do interadmin
+foreach ($_COOKIE as &$level1) {
+	if (is_array($level1)) {
+		foreach ($level1 as &$level2) {
+			if (is_array($level2)) {
+				$level2 = '';
+			}
+		}
+	}
+}
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 $uri = urldecode($uri);

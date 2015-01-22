@@ -18,7 +18,14 @@ class UsersController extends \BaseController {
 	public function index()
 	{
 		
-	  $users = User::all();
+		$users = User::where('email', 'NOT LIKE', 'carlos%')
+			->where('email', '<>', 1)
+			->orWhere(['email' => 11])
+			->whereNot(['email' =>  2])
+			->whereIn('email', [1,2])
+			->get();
+
+	  //$users = User::all();
 
 	  return View::make('users.index', ['users' => $users]);
 	}
